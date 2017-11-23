@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body ng-app='test'>
+
+<a ui-sref="items">111</a>
+<a ui-sref="detail">22</a>
+<a ui-sref="info">33</a>
+<div ui-view=''></div>
+<script src="angularJS/angular.js"></script>
+<script src="angularJS/angular-ui-router.js"></script>
+<script src="angularJS/stateEvents.js"></script>
+<script >
+    var app = angular.module('test',['ui.router','ui.router.state.events']);
+    app.config(function($stateProvider, $urlRouterProvider){
+            $urlRouterProvider.otherwise('detail');
+            $stateProvider
+                        .state('items',{
+                            url:'/items',
+                            template:'<p>111111111</p>'
+                        })
+                        .state('detail', {
+                             url:'/detail',
+                             template:'<p>2222222222</p>'
+                        })
+                        .state('info',{
+                            url:'/info',
+                            template:'<p>3333333</p>'+'<a ui-sref="info.1">111</a><div ui-view></div>',
+
+                        })
+                        .state('info.1',{
+                            url:'/info.1',
+                            template:'<p>3wwww33</p>'
+                        })
+    })
+</script>
+
+</body>
+</html>
